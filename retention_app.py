@@ -2,13 +2,13 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 # Title and Instructions
-st.title("User retention over time - SAAS")
-st.write("This app simulates user retention of SAAS app for a whole year based on a rolling 30-day churn rate and monthly acquisitions.")
+st.title("User retention over time")
+st.write("This app simulates user retention for a whole year based on a rolling 30-day churn rate and monthly acquisitions.")
 st.write("For any questions or inquiries, please contact me at tomas.hermansky@gmail.com.")
 st.write("View the [source code on GitHub](https://github.com/pax-385/SAAS_retention).")
 
 # Input Widgets
-rolling_30_churn_rate = st.slider("Rolling 30-day Churn Rate (%)", 0.0, 100.0, 9.9) / 100
+rolling_30_churn_rate = st.number_input("Rolling 30-day Churn Rate (%)", min_value=0.0, max_value=100.0, value=9.9) / 100
 initial_user_count = st.number_input("Initial User Count", min_value=0, value=1000)
 
 # Option to select acquisition type
@@ -18,7 +18,7 @@ acquisition_type = st.radio("Monthly Acquisition Type", ["Absolute Number", "Per
 if acquisition_type == "Absolute Number":
     monthly_acquisition = st.number_input("Monthly Acquisition (new users per month)", min_value=0, value=100)
 else:
-    monthly_acquisition_percentage = st.slider("Monthly Acquisition Rate (%)", 0.0, 100.0, 5.0) / 100
+    monthly_acquisition_percentage = st.number_input("Monthly Acquisition Rate (%)", min_value=0.0, max_value=100.0, value=5.0) / 100
 
 # Lists to store monthly user counts and time points
 user_counts = [initial_user_count]
