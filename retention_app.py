@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # Title and Instructions
 st.title("User Retention Over Time")
 st.write("This app simulates user retention for a whole year based on a rolling 30-day churn rate and monthly acquisitions.")
-st.write("For any questions or inquiries, please contact Tomas at tomas.hermansky@gmail.com.")
+st.write("For any questions or inquiries, please contact me at tomas.hermansky@gmail.com.")
 st.write("View the [source code on GitHub](https://github.com/pax-385/SAAS_retention).")
 
 # Input Widgets
