@@ -7,8 +7,16 @@ st.write("This app simulates user retention for a whole year based on a rolling 
 
 # Input Widgets
 rolling_30_churn_rate = st.slider("Rolling 30-day Churn Rate (%)", 0.0, 100.0, 9.9) / 100
-monthly_acquisition = st.number_input("Monthly Acquisition (new users per month)", min_value=0, value=100)
 initial_user_count = st.number_input("Initial User Count", min_value=0, value=1000)
+
+# Option to select acquisition type
+acquisition_type = st.radio("Monthly Acquisition Type", ["Absolute Number", "Percentage of Current Users"])
+
+# Acquisition input based on the selected type
+if acquisition_type == "Absolute Number":
+    monthly_acquisition = st.number_input("Monthly Acquisition (new users per month)", min_value=0, value=100)
+else:
+    monthly_acquisition_percentage = st.slider("Monthly Acquisition Rate (%)", 0.0, 100.0, 5.0) / 100
 
 # Lists to store monthly user counts and time points
 user_counts = [initial_user_count]
@@ -19,8 +27,11 @@ for month in months:
     # Apply churn rate to current user count
     retained_users = user_counts[-1] * (1 - rolling_30_churn_rate)
     
-    # Add monthly acquisition
-    new_total = retained_users + monthly_acquisition
+    # Determine new acquisition based on the selected acquisition type
+    if acquisition_type == "Absolute Number":
+        new_total = retained_users + monthly_acquisition
+    else:
+        new_total = retained_users * (1 + monthly_acquisition_percentage)
     
     # Append new total user count to list
     user_counts.append(new_total)
