@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # Title and Instructions
 st.title("User retention over time")
-st.write("This app simulates user retention for a whole year based on a rolling 30-day churn rate and monthly acquisitions.")
+st.write("This script simulates user retention over a year in a SaaS business by modeling monthly churn and acquisition rates, allowing you to see how the user base evolves over time. Starting with an initial user count, the script applies a rolling 30-day churn rate each month, compounding losses from the remaining user base. At the same time, it models monthly acquisition, which can be a fixed number of new users added each month or a percentage of the remaining user base. This approach reflects realistic user growth and retention dynamics, with the results displayed in a line chart that illustrates the overall trend in user count across 12 months.")
 st.write("For any questions or inquiries, please contact me at tomas.hermansky@gmail.com.")
 st.write("View the [source code on GitHub](https://github.com/pax-385/SAAS_retention).")
 
@@ -12,7 +12,7 @@ rolling_30_churn_rate = st.number_input("Rolling 30-day Churn Rate (%)", min_val
 initial_user_count = st.number_input("Initial User Count", min_value=0, value=1000)
 
 # Option to select acquisition type
-acquisition_type = st.radio("Monthly Acquisition Type", ["Absolute Number", "Percentage of Current Users"])
+acquisition_type = st.radio("Monthly Acquisition Type", ["Percentage of Current Users", "Absolute Number" ])
 
 # Acquisition input based on the selected type
 if acquisition_type == "Absolute Number":
